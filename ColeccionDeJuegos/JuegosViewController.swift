@@ -25,7 +25,11 @@ class JuegosViewController: UIViewController,
     }
     @IBAction func agregarTapped(_ sender: Any) {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let juego = 
+        let juego = Juego(context: context)
+        juego.titulo = tituloTextField.text
+        juego.imagen = JuegoImageView.image?.jpegData(compressionQuality: 0.50)
+        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        navigationController?.popViewController(animated: true)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
